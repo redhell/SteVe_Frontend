@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg" sizes="any">
+  <link rel="apple-touch-icon"  sizez="180x180" href="favicon.png">
+  <link rel="mask-icon" href="favicon.svg" color="#FFFFFF">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="CP Starter">
+  <link rel="apple-touch-startup-image" href="/favicon.svg">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta http-equiv="Expires" CONTENT="0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Simple starter | Ladepunkt&uuml;bersicht</title>
+  <script src="jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="functions.js"></script>
+</head>
+<body onload="checklogged(); loadCPs();">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="viewport">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="overview.html">CP Starter</a>
+    <div class="collapse navbar-collapse" id="navbarToggle">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="overview.html">Ladepunkt&uuml;bersicht</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ladedaten.html">Ladedaten</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="token.html">Tokenverwaltung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html" onclick="return logout();">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main role="main" class="container-fluid p-0">
+    <div class="container-fluid" id="mainContainer">
+      <div class="row">
+        <div class="col"><h2>Verfügbare Ladepunkte</h2></div>
+        <div class="col"><button type="button" class="btn btn-secondary" id="loadCP" onclick="loadCPs()">Aktualisieren</button></div>
+      </div>
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Ladepunkt</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody id="cpTable">
+        </tbody>
+      </table>
+    </div>
+    <div class="container-fluid">
+      <div class="card invisible" id="cpContainer">
+        <div class="card-header p-1">
+          <ul class="nav nav-pills card-header-pills">
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Ladepunkdetails</a>
+              </li>
+          </ul>
+        </div>
+        <div class="card-body bg-light p-0" id="cpDetails">
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-success" type="button" onclick="startCharge()" id="btnStart">Ladevorgang starten</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-danger disabled" type="button" onclick="stopCharge()" id="btnStop" disabled>Ladevorgang stoppen</button>
+              </div>
+            </div>
+          <br />
+          <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Ladepunkt</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="table-cp">
+              <tr>
+                <td id="details-cp">
+                </td>
+                <td id="details-avail">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Hersteller</th>
+                <th scope="col">Modell</th>
+                <th scope="col">Serienummer</th>
+              </tr>
+            </thead>
+            <tbody id="table-model">
+              <tr>
+                <td id="details-vendor">
+                </td>
+                <td id="details-model">
+                </td>
+                <td id="details-sn">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Z&auml;hlertyp</th>
+                <th scope="col">Z&auml;hlernummer</th>
+              </tr>
+            </thead>
+            <tbody id="table-meter">
+              <tr>
+                <td id="details-meter">
+                </td>
+                <td id="details-metersn">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Zus&auml;tzliche Hinweise</th>
+                <th scope="col">Beschreibung</th>
+              </tr>
+            </thead>
+            <tbody id="table-notes">
+              <tr>
+                <td id="details-notes">
+                </td>
+                <td id="details-description">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Adresse</th>
+                <th scope="col">Koordinaten</th>
+              </tr>
+            </thead>
+            <tbody id="table-address">
+              <tr>
+                <td id="details-address">
+                </td>
+                <td id="details-coordinates">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

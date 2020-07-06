@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg" sizes="any">
+  <link rel="apple-touch-icon"  sizez="180x180" href="favicon.png">
+  <link rel="mask-icon" href="favicon.svg" color="#FFFFFF">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="CP Starter">
+  <link rel="apple-touch-startup-image" href="/favicon.svg">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta http-equiv="Expires" CONTENT="0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Simple starter | Tokenverwaltung</title>
+  <script src="jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="functions.js"></script>
+</head>
+<body onload="checklogged(); fillTokenList()">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="viewport">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="overview.html">CP Starter</a>
+    <div class="collapse navbar-collapse" id="navbarToggle">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="overview.html">Ladepunkt&uuml;bersicht</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ladedaten.html">Ladedaten</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="token.html">Tokenverwaltung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html" onclick="return logout();">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main role="main" class="container-fluid p-0">
+    <div class="container-fluid" id="mainContainer">
+        <div class="row">
+          <div class="col"><h2>Tokenverwaltung</h2></div>
+        </div>
+        <div class="row">
+          <div class="col"><h4>Verfügbare RFID-Token</h4></div>
+        </div>
+    </div>
+    <div class="container-fluid" id="tokenContainer">
+      <table class="table table-bordered table-hover table-sm">
+        <thead class="thead-light">
+          <th scope="col">#</th>
+          <th scope="col">Token</th>
+          <th scope="col">Notiz</th>
+        </thead>
+        <tbody id="tokenListe">
+        </tbody>
+      </table>
+    </div>
+    <div class="container-fluid" id="removeTokenContainer">
+      <div class="row">
+        <div class="col">Ausgew&auml;hltes Token l&ouml;schen</div>
+        <div class="col">
+          <button type="button" class="btn btn-danger" onclick="deleteToken()" id="removeTokenBtn" disabled>L&ouml;schen</button>
+      </div>
+    </div>
+    </div>
+    <br />
+    <div class="container-fluid" id="addTokenContainer">
+      <form action="#" onsubmit="return addNewToken()" id="addTokenForm">
+        <div class="card">
+          <div class="card-header">Neues RFID-Token hinzuf&uuml;gen</div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="newToken" class="col-sm-2 col-form-label">Token:</label>
+              <div class="col-sm-10">
+                <input type="text" id="newToken" class="form-control" pattern="\S+" placeholder="TokenID" required>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                  Dieses Feld muss ausgef&uuml;llt werden!
+                </small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="newTokenNote" class="col-sm-2 col-form-label">Notiz:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="newTokenNote">
+              </div>
+            </div>
+            <button type="submit" class="btn btn btn-success" >Hinzuf&uuml;gen</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

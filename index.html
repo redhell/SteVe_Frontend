@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg" sizes="any">
+  <link rel="apple-touch-icon"  sizez="180x180" href="favicon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="CP Starter">
+  <link rel="apple-touch-startup-image" href="/favicon.svg">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="mask-icon" href="favicon.svg" color="#FFFFFF">
+  <meta http-equiv="Expires" CONTENT="0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Simple starter</title>
+  <script src="jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="functions.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="viewport">
+    <a class="navbar-brand" href="#">CP Starter</a>
+  </nav>
+  <main role="main" class="container">
+    <form action="overview.html" onsubmit="return login(event)" id="loginform">
+      <div class="card">
+        <div class="card-body bg-light">
+          <div class="form-group">
+            <div class="col">
+              <input type="email" id="email" class="form-control" placeholder="E-Mail Adresse" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col">
+              <input type="password" class="form-control" id="password" placeholder="Token" required>
+            </div>
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn btn-primary">Einloggen</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
